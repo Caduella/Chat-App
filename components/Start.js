@@ -20,7 +20,7 @@ const Start = ({ navigation }) => {
                     placeholder='Type your username here'
                 />
                 <Text style={styles.chooseBackgroundColor}>Choose Background Color</Text>
-                {/* Allow to choose the background color of chat \*/}
+                {/* Allow the user to choose the background color of chat \*/}
                 <View style={styles.colorButtonsBox}>
                     {colors.map((color, index) => (
                         <TouchableOpacity
