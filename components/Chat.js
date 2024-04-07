@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { StyleSheet, View, Text } from 'react-native';
-import { GiftedChat, Bubble } from "react-native-gifted-chat";
+import { StyleSheet, View, KeyboardAvoidingView, Platform } from 'react-native';
+import { Bubble, GiftedChat } from "react-native-gifted-chat";
 
 const Chat = ({ route, navigation }) => {
     const { name, background } = route.params;
@@ -27,7 +27,7 @@ const Chat = ({ route, navigation }) => {
 		// Display the user's name
     useEffect(() => {
         navigation.setOptions({ title: name });
-      }, []);
+    }, []);
 
     // Display two preloaded static message at the beginning  
     useEffect(() => {
@@ -52,8 +52,7 @@ const Chat = ({ route, navigation }) => {
     }, []);
 
     return (
-        <View style={[styles.container, {backgroundColor: background}]}>
-            <Text>Welcome to the Chat App</Text>
+        <View style={[styles.container, {backgroundColor: background}]}>          
             <GiftedChat
               messages={messages}
               renderBubble={renderBubble}
@@ -64,16 +63,12 @@ const Chat = ({ route, navigation }) => {
             />
              { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null }
         </View>
- );
+    );
 }
 
 const styles = StyleSheet.create({
  container: {
-   flex: 1,
-   justifyContent: 'center',
-   alignItems: 'center',
-   width: '100%',
-   height: '100%',
+   flex: 1, 
  }
 });
 
