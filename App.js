@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, LogBox } from 'react-native';
+LogBox.ignoreLogs(["AsyncStorage has been extracted from"]);
 
 // import the screens
 import Start from './components/Start';
@@ -12,7 +13,27 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // Create the navigator
 const Stack = createNativeStackNavigator();
 
+// import Firestore
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
 const App = () => {
+   // Web app's Firebase configuration
+   const firebaseConfig = {
+    apiKey: "AIzaSyBsAw9R7JE1dCIN6v2Gosw8MFIN7Vffzl8",
+    authDomain: "chat-app-f13c4.firebaseapp.com",
+    projectId: "chat-app-f13c4",
+    storageBucket: "chat-app-f13c4.appspot.com",
+    messagingSenderId: "788398632447",
+    appId: "1:788398632447:web:013bf17bc15e210afc4bca"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+  // Initialize Cloud Firestore and get a reference to the service
+  const db = getFirestore(app)
+
   return (
     <NavigationContainer>
     <Stack.Navigator
@@ -24,8 +45,9 @@ const App = () => {
       />
       <Stack.Screen
         name="Chat"
-        component={Chat}
-      />
+        >
+        {props => <Chat db={db} {...props} />}
+    </Stack.Screen>
     </Stack.Navigator>
   </NavigationContainer>
   );
