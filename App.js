@@ -19,8 +19,6 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, disableNetwork, enableNetwork } from "firebase/firestore";
 
 const App = () => {
-  const connectionStatus = useNetInfo();
-
   // Web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyBsAw9R7JE1dCIN6v2Gosw8MFIN7Vffzl8",
@@ -36,6 +34,9 @@ const App = () => {
 
   // Initialize Cloud Firestore and get a reference to the service
   const db = getFirestore(app)
+
+  //Connection status
+  const connectionStatus = useNetInfo();
 
   // Network connectivity status
   useEffect(() => {
