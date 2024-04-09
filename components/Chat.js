@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { StyleSheet, View, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView, Platform, Text, TouchableOpacity } from 'react-native';
 import { Bubble, GiftedChat, InputToolbar } from "react-native-gifted-chat";
 import { collection, addDoc, onSnapshot, orderBy, query } from "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CustomActions from './CustomActions';
+import MapView from 'react-native-maps';
 
-const Chat = ({ route, navigation, db, isConnected }) => {
-    const { name, background, id } = route.params;
+const Chat = ({ route, navigation, db, isConnected, storage }) => {
+    const { name, background, userID } = route.params;
     const [messages, setMessages] = useState([]);
     const onSend = (newMessages) => {
       addDoc(collection(db, "messages"), newMessages[0])
@@ -32,6 +34,29 @@ const Chat = ({ route, navigation, db, isConnected }) => {
       else return null;
     }
     
+    // Render an action button in Inputfield
+    const renderCustomActions = (props) => {
+      return <CustomActions storage={storage} {...props} />;
+    };
+
+    // Render a MapView if the currentMessage contains location data
+    const renderCustomView = (props) => {
+      const { currentMessage } = props;
+      if (currentMessage.location) {
+        return (
+          <MapView 
+            style={{ width: 150, height: 100, borderRadius: 13, margin: 3 }}
+            region={{
+              latitude: currentMessage.location.latitude,
+              longitude: currentMessage.location.longitude,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+          />
+        );
+      }
+      return null;
+    };
 
 		// Display the user's name
     useEffect(() => {
@@ -60,6 +85,7 @@ const Chat = ({ route, navigation, db, isConnected }) => {
         setMessages(newMessages);
       });
       } else loadCachedMessages();
+
       // Clean up code
       return () => {
         if (unsubMessages) unsubMessages();
@@ -84,10 +110,13 @@ const Chat = ({ route, navigation, db, isConnected }) => {
             <GiftedChat
               messages={messages}
               renderBubble={renderBubble}
+              renderInputToolbar={renderInputToolbar}
+              renderActions={renderCustomActions}
+              renderCustomView={renderCustomView}
               onSend={messages => onSend(messages)}
               user={{
                //_id: route.params.id,
-               _id: id,
+               _id: userID,
                name
               }}
             />
