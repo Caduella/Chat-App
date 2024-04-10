@@ -68,18 +68,30 @@ This is a chat app for mobile devices using React Native. The app provides users
    ```
 
 4. **Install Dependencies:**
-   ```npm install @react-native-async-storage/async-storage```: asynchronous, persistent key value storage
-   ```npm install @react-native-community/netinfo```: monitoring on/offline status
-   ```npm install @react-navigation/native```: navigation library
-   ```npm install @react-navigation/native-stack```: react-navigation dependencies
-   ```npm install expo-image-picker```: access to the device's image library
-   ```npm install expo-location```: access to the device's geolocation
-   ```npm install firebase```: real-time database and storage services
-   ```npm install react-native```: native-app development tool utilizing react
-   ```npm install react-native-gifted-chat```: Chat UI components
-   ```npm install react-native-maps```: Geolocation tool
-   ```npm install react-native-safe-area-context```: react-navigation dependencies
-   ```npm install react-native-screens```: react-navigation dependencies
+
+   - ```npm install @react-native-async-storage/async-storage```: asynchronous, persistent key value storage
+
+   - ```npm install @react-native-community/netinfo```: monitoring on/offline status
+
+   - ```npm install @react-navigation/native```: navigation library
+
+   - ```npm install @react-navigation/native-stack```: react-navigation dependencies
+
+   - ```npm install expo-image-picker```: access to the device's image library
+
+   - ```npm install expo-location```: access to the device's geolocation
+
+   - ```npm install firebase```: real-time database and storage services
+
+   - ```npm install react-native```: native-app development tool utilizing react
+
+   - ```npm install react-native-gifted-chat```: Chat UI components
+
+   - ```npm install react-native-maps```: Geolocation tool
+
+   - ```npm install react-native-safe-area-context```: react-navigation dependencies
+
+   - ```npm install react-native-screens```: react-navigation dependencies
 
 4. **Configure Firebase:**
 
