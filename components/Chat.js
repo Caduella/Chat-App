@@ -7,7 +7,7 @@ import CustomActions from './CustomActions';
 import MapView from 'react-native-maps';
 
 const Chat = ({ route, navigation, db, isConnected, storage }) => {
-    const { name, background, userID } = route.params;
+    const { name, background, id } = route.params;
     const [messages, setMessages] = useState([]);
     const onSend = (newMessages) => {
       addDoc(collection(db, "messages"), newMessages[0])
@@ -115,7 +115,7 @@ const Chat = ({ route, navigation, db, isConnected, storage }) => {
               renderCustomView={renderCustomView}
               onSend={messages => onSend(messages)}
               user={{             
-               _id: userID,
+               _id: id,
                name
               }}
             />

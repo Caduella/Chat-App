@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { getAuth, signInAnonymously } from "firebase/auth";
 
-const Start = ({ navigation }) => {
+const Start = ({ navigation }) => {  
     const auth = getAuth();
     const [name, setName] = useState('');
     const [background, setBackground] = useState('');
