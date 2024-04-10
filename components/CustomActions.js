@@ -58,6 +58,7 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID })
         const uniqueRefString = generateReference(imageURI); 
         const newUploadRef = ref(storage, uniqueRefString);
         const response = await fetch(imageURI);
+        //convert the content obtained from fetch to blob , so that Firestore can store it 
         const blob = await response.blob();
         uploadBytes(newUploadRef, blob).then(async (snapshot) => {
             const imageURL = await getDownloadURL(snapshot.ref);
@@ -71,7 +72,7 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID })
         if (permissions?.granted) {
             let result = await ImagePicker.launchImageLibraryAsync();
             if (!result.canceled) await uploadAndSendImage(result.assets[0].uri);                
-            else Alert.alert("Permissions haven't been granted.");
+            else Alert.alert("Permissions to accsess photo library haven't been granted.");
         }
     }
 
@@ -81,12 +82,19 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, userID })
         if (permissions?.granted) {
             let result = await ImagePicker.launchCameraAsync();
             if (!result.canceled) await uploadAndSendImage(result.assets[0].uri);
-            else Alert.alert("Permissions haven't been granted.")
+            else Alert.alert("Permissions to use camera haven't been granted.")
         }
     }
 
     return (
-        <TouchableOpacity style={styles.container} onPress={onActionPress}>
+        <TouchableOpacity 
+            style={styles.container} 
+            onPress={onActionPress}
+            accessible={true}
+            accessibilityLabel="More options"
+            accessibilityHint="Choose what type of media you want to share or cancel to collapse menu"
+            accessibilityRole="button"
+        >
             <View style={[styles.wrapper, wrapperStyle]}>
                 <Text style={[styles.iconText, iconTextStyle]}>+</Text>
             </View>

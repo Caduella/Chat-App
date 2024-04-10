@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { StyleSheet, View, KeyboardAvoidingView, Platform, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView, Platform } from 'react-native';
 import { Bubble, GiftedChat, InputToolbar } from "react-native-gifted-chat";
 import { collection, addDoc, onSnapshot, orderBy, query } from "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -114,8 +114,7 @@ const Chat = ({ route, navigation, db, isConnected, storage }) => {
               renderActions={renderCustomActions}
               renderCustomView={renderCustomView}
               onSend={messages => onSend(messages)}
-              user={{
-               //_id: route.params.id,
+              user={{             
                _id: userID,
                name
               }}
