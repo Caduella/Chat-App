@@ -4,8 +4,8 @@
 This is a chat app for mobile devices using React Native. The app provides users with a chat interface and options to share images and their location.
 
 ## Screenshot of the App
-![App Start Window]()
-![App showing image uploads and location]()
+![App Start Window](App_Start_Window.png)
+![App showing image uploads and location](Image_Upload_and_Location.png)
 
 ## Key Features
 * A page where users can enter their name and choose a background color for the chat screen before joining the chat.
@@ -49,48 +49,37 @@ This is a chat app for mobile devices using React Native. The app provides users
 * **MapView**: Specific component from the react-native-maps library used to display maps in React Native applications.
 
 ## Installation
-* Clone this repository.
-* Navigate to the chat-app folder and run ```npm install```
-* Set up Firebase for your project:
-    - Sign in at Google Firebase
-    - Create a project
-    - Set up Firestore Database (production mode)
-    - Adjust rules from ```allow read, write: if false;``` to ```allow read, write: if true;```
-    - Register app(</>) in Project Overview
-    - Navigate to the chat-app folder and install the Firebase using ```npm install firebase```
-    - Initialize Firebase by copying and pasting the provided Firebase configuration into the App.js
-* Download Android Studio on your computer or use the Expo Go App on your mobile device
-* Run ```expo start```
 
-1. **Clone the Repository:**
+1. **Set up Expo**
+   * Node.js (downgrade to 16.19.0 since Expo will only support Node 16 and lower versions)
+      ```nvm install 16.19.0``` then ```nvm use 16.19.0```
+   * Expo and Expo CLI to build the app   ```npm install -g expo-cli```
+   * Expo Go app, in order to test the app on a physical mobile device
+   * Create an Expo account
 
-   ```bash
-   git clone https://github.com/alinatelychko/chat-app.git
-   ```
+2. **Set up Android Emulator**
+   * Install Android Studio (for Android development) or Xcode (for iOS development)
+   * Choose an appropriate virtual device (AVD for Android devices) using Virtual Device Manager
 
-2. **Navigate to the Project Directory:**
+3. **Clone the Repository**
 
    ```bash
-   cd chat-app
+   git clone https://https://github.com/Caduella/Chat-App.git
    ```
 
-3. **Install Dependencies:**
-
-   ```bash
-   npm install
-   ```
-
-	  This project uses a variety of dependencies, including:
-
-   - [React Native](https://reactnative.dev/)
-   - [Firebase](https://firebase.google.com/): Real-time database and storage services
-   - [React Navigation](https://reactnavigation.org/): Navigation library
-   - [Expo](https://expo.dev/): Development framework for React Native
-   - [react-native-gifted-chat](https://github.com/FaridSafi/react-native-gifted-chat): Chat UI components
-   - [expo-image-picker](https://docs.expo.dev/versions/latest/sdk/imagepicker/): Access to the device's image library
-   - [expo-location](https://docs.expo.dev/versions/latest/sdk/location/): Access to the device's location
-   - [expo-async-storage](https://docs.expo.dev/versions/latest/sdk/async-storage/): Asynchronous, persistent key-value storage
-   - [Firebase Storage](https://firebase.google.com/docs/storage): Storage service for Firebase
+4. **Install Dependencies:**
+   ```npm install @react-native-async-storage/async-storage```: asynchronous, persistent key value storage
+   ```npm install @react-native-community/netinfo```: monitoring on/offline status
+   ```npm install @react-navigation/native```: navigation library
+   ```npm install @react-navigation/native-stack```: react-navigation dependencies
+   ```npm install expo-image-picker```: access to the device's image library
+   ```npm install expo-location```: access to the device's geolocation
+   ```npm install firebase```: real-time database and storage services
+   ```npm install react-native```: native-app development tool utilizing react
+   ```npm install react-native-gifted-chat```: Chat UI components
+   ```npm install react-native-maps```: Geolocation tool
+   ```npm install react-native-safe-area-context```: react-navigation dependencies
+   ```npm install react-native-screens```: react-navigation dependencies
 
 4. **Configure Firebase:**
 
@@ -100,5 +89,9 @@ This is a chat app for mobile devices using React Native. The app provides users
 5. **Run the App:**
 
    ```bash
-   npm start
+   npx expo start
    ```
+   - for the android emulation on the computer, click "a" after Metro Bundler is finished
+   - for the physical smartphone, scan QR code using the Expo Go app
+   - Once the app is launched, you will be asked to enter the user name and choose the background color and start chatting.
+   - Use the '+' button on the left of the message bar in order to access additional features such as choose images from the libray, take a picture, and send location info
