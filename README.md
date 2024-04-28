@@ -26,6 +26,7 @@ This is a chat app for mobile devices using React Native. The app provides users
 * The app is able to read the user’s location data.
 * Location data is sent via the chat in a map view.
 * The chat interface and functionality are created using the Gifted Chat library.
+* Android Studio was utilized as an android emulator.
 * The app’s codebase contains comments.
 
 ## Design Specifications
